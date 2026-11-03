@@ -288,6 +288,7 @@ body {
   .card-grid, .footer-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 18px; }
   .hero-sub {display: none}
+  .form-heading { font-family: "Fraunces", Georgia, serif; font-size: 18px; margin: 0 0 2px; color: var(--navy); }
 }
 
 
