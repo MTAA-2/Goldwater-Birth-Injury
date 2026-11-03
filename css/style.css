@@ -173,10 +173,10 @@ body {
   border-radius: 20px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
   max-width: 840px;
-  padding: 28px 28px 22px;
+  padding: 8px 8px 22px;
   position: relative;
   z-index: 2;
-  margin: 20px; /* <-- centered, wider, and the overflow: card extends past the hero */
+  margin: 8px; /* <-- centered, wider, and the overflow: card extends past the hero */
 }
 
 .form-heading { font-family: "Fraunces", Georgia, serif; font-size: 26px; margin: 0 0 4px; color: var(--navy); }
@@ -204,7 +204,7 @@ body {
 
 /* ---------- Sections ---------- */
 
-.section { padding: 76px 0; }
+.section { padding: 35px 0; }
 
 /* First section under the hero needs clearance for the card */
 .section--after-hero { padding-top: 50px; }
