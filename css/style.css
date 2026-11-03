@@ -1,8 +1,11 @@
 /* ============================================================
    Medical Malpractice landing page — modernized design
    ------------------------------------------------------------
-   Burgundy, gold/amber and charcoal — palette matched to injuredatbirthclaim.com
-   (framework CSS identical to the uploaded file except colors). The hero form card OVERFLOWS the hero:
+   Burgundy and charcoal with bronze and gold — palette matched to the live
+   familyjusticefirm.com. Base code is the robo-caller (consumerclaimhelp.com)
+   rebuild, including its parallax placeholders; per the brief, the HERO IS
+   REDESIGNED in this build: clean white background, centered copy, and the
+   form card centered and wider on desktop. The hero form card OVERFLOWS the hero:
    it is pulled down past the hero's bottom edge (negative
    bottom margin) so it overlaps the section beneath it, and
    the form frame itself scrolls internally (overflow: auto)
@@ -42,19 +45,18 @@ body {
 
 /* ---------- Top bar ---------- */
 
-.topbar { background: var(--navy); color: #e6ddd2; font-size: 13px; }
+.topbar { background: var(--navy); color: #d6d6d6; font-size: 13px; }
 .topbar-inner { display: flex; justify-content: space-between; align-items: center; padding-top: 9px; padding-bottom: 9px; }
 .topbar .dot { margin: 0 8px; color: var(--gold); }
 .topbar-phone { color: #fff; font-weight: 700; text-decoration: none; letter-spacing: 0.02em; }
 
 /* ---------- Header ---------- */
 
-.site-header { background: #fff; border-bottom: 1px solid var(--line); }
+.site-header { background: #ffffff; border-bottom: 1px solid var(--line); }
 .header-inner { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; padding-bottom: 0px; }
 .logo { text-decoration: none; color: var(--navy); }
 .logo-text { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 24px; letter-spacing: 0.01em; }
 .logo-amp { color: var(--gold); }
-.header-phone {color: #5b1a1a; font-size: 16px; font-weight: 600}
 
 /* ---------- Buttons ---------- */
 
@@ -77,22 +79,22 @@ body {
 /* ---------- Hero ---------- */
 
 .hero {
-  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);
-  color: #fff;
-  padding: 8px 0 15px; /* extra bottom room for the overlapping form card */
+  background: #ffffff;
+  color: var(--ink);
+  padding: 56px 0 60px; /* the form card's -110px bottom margin pulls it 50px past the hero's bottom edge, over the section below */
   position: relative;
   overflow: visible;
 }
 
 .hero-inner {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 56px;
-  align-items: start;
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero-eyebrow {
-  color: var(--gold-light);
+  color: var(--gold);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -102,21 +104,61 @@ body {
 
 .hero-title {
   font-family: "Fraunces", Georgia, serif;
+  color: var(--navy);
   font-size: 52px;
   line-height: 1.08;
   margin: 0 0 18px;
 }
 
-.hero-sub { color: #d9d9d9; font-size: 18px; margin: 0 0 26px; max-width: 540px; }
+.hero-sub { color: #444444; font-size: 18px; margin: 0 auto 26px; max-width: 680px; }
 
-.hero-badges { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-badges { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .hero-badges li {
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(0, 0, 0, 0.22);
   border-radius: 999px;
   padding: 7px 14px;
   font-size: 13px;
   font-weight: 600;
-  color: #f2f2f2;
+  color: var(--navy);
+}
+
+/* Section with full-bleed background image, parallax scroll,
+   and a color overlay. Adjust --overlay-opacity: 0 = no tint, 1 = solid color. */
+.section-parallax {
+  --overlay-rgb: 91, 26, 26;      /* overlay color as R, G, B — this site's burgundy #5b1a1a */
+  --overlay-opacity: 0.78;        /* overlay strength */
+  background-image:
+    linear-gradient(
+      rgba(var(--overlay-rgb), var(--overlay-opacity)),
+      rgba(var(--overlay-rgb), var(--overlay-opacity))
+    ),
+    url("YOUR-IMAGE-URL-HERE");   /* placeholder — replace with the image URL to be provided */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;   /* this line is the parallax effect */
+  color: #fff;                    /* text over a dark overlay */
+
+
+/* iOS Safari ignores background-attachment: fixed — fall back to a normal scroll */
+@media (max-width: 900px) {
+  .section-parallax { background-attachment: scroll; }
+
+}
+}
+
+/* Second parallax section (used on the light results band) — a LIGHT tint
+   variant, so the band's dark text stays readable over the photo, with its
+   own placeholder image URL. */
+.section-parallax-2 {
+  --overlay-rgb: 255, 255, 255;
+  --overlay-opacity: 0.86;
+  background-image:
+    linear-gradient(
+      rgba(var(--overlay-rgb), var(--overlay-opacity)),
+      rgba(var(--overlay-rgb), var(--overlay-opacity))
+    ),
+    url("YOUR-IMAGE-URL-HERE-2");   /* placeholder — replace with the image URL to be provided */
 }
 
 /* ---------- OVERFLOW FORM CARD ----------
@@ -127,12 +169,14 @@ body {
 .hero-form {
   background: #fff;
   color: var(--ink);
+  border: 1px solid var(--line);
   border-radius: 20px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  max-width: 840px;
   padding: 28px 28px 22px;
   position: relative;
   z-index: 2;
-  margin-bottom: -30; /* <-- the overflow: card extends past the hero */
+  margin: 20px; /* <-- centered, wider, and the overflow: card extends past the hero */
 }
 
 .form-heading { font-family: "Fraunces", Georgia, serif; font-size: 26px; margin: 0 0 4px; color: var(--navy); }
@@ -188,7 +232,7 @@ body {
 
 .lead { font-size: 19px; color: #333333; max-width: 820px; }
 
-.section--dark { background: var(--navy); color: #e8ddd2; }
+.section--dark { background: var(--navy); color: #e6e6e6; }
 .section--dark .lead { color: #d9d9d9; }
 
 .section--gold { background: #ededed; text-align: center; }
@@ -236,10 +280,10 @@ body {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 900px) {
-  .hero { padding: 48px 0 110px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero { padding: 40px 0 30px; }
+  .hero-inner { max-width: 100%; }
   .hero-title { font-size: 28px; }
-  .hero-form { margin-bottom: 1px; }
+  .hero-form { margin: 28px auto 1px; }
   .section--after-hero { padding-top:5px; }
   .card-grid, .footer-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 18px; }
